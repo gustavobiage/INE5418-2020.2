@@ -1,9 +1,5 @@
 #include "../templates/cliente.h"
 
-#define IP "127.0.0.1"
-#define PORT 8080
-#define BUFFER_LENGTH 100
-
 void read_number(char * string, char * buffer, int * pointer) {
 	int bpointer = *pointer;
 	while (string[*pointer] >= '0' && string[*pointer] <= '9') {
@@ -15,7 +11,8 @@ void read_number(char * string, char * buffer, int * pointer) {
 
 int main(int argc, char **argv) {
 	if (argc != 2) {
-		printf("Quantidade de argumentos errado");
+		printf("Quantidade de argumentos errado\n");
+		return -1;
 	}
 	int sockfd;
 	int len;
@@ -35,7 +32,7 @@ int main(int argc, char **argv) {
 	len = sizeof(address);
 	result = connect(sockfd, (struct sockaddr *) &address, len);
 	if (result == -1) {
-		printf("oops: erro ao estabelecer a conexão (%d)", result);
+		printf("oops: erro ao estabelecer a conexão (%d)\n", result);
 		return -1;
 	}
 
@@ -49,7 +46,6 @@ int main(int argc, char **argv) {
 		char op = string[pointer++];
 		read_number(string, value2, &pointer);
 		sprintf(buffer, "%c#%s#%s", op, value1, value2);
-
 		write(sockfd, buffer, BUFFER_LENGTH);
 		read(sockfd, value1, BUFFER_LENGTH);
 	}
@@ -57,7 +53,7 @@ int main(int argc, char **argv) {
 	strcpy(buffer, "sair");
 	write(sockfd, buffer, BUFFER_LENGTH);
 
-	printf("resultado = %s", value1);
+	printf("resultado = %s\n", value1);
 	close(sockfd);
 	return 0;
 }

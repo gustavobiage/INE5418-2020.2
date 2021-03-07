@@ -6,6 +6,15 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <string.h>
+#include <stdio.h>
+
+#include "concurrent_queue.h"
+
+struct thread_par {
+	pthread_t* self_address;
+	int client_sockfd;
+	int buffer_length;
+};
 
 struct operation {
 	int a;
