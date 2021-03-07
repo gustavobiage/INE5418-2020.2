@@ -29,8 +29,8 @@ build_resources_dir := $(shell mkdir -p $(RESOURCES_DIR))
 build_tmp_dir := $(shell mkdir -p $(TMP_DIR))
 build_object_dir := $(shell mkdir -p $(OBJECT_DIR))
 
-buid:$(MULTI_CLIENTE_EXE) $(CLIENTE_EXE) $(SERVER_EXE) $(CALCULADORA_EXE)
-	echo "construído com sucesso"
+build:$(MULTI_CLIENTE_EXE) $(CLIENTE_EXE) $(SERVER_EXE) $(CALCULADORA_EXE)
+	@echo "construído com sucesso"
 
 testar: $(CLIENTE_EXE) $(SERVER_EXE) $(MULTI_CLIENTE_EXE)
 	@# Inicializar servidor 1
@@ -71,6 +71,8 @@ $(CALCULADORA_OBJECT) : $(CALCULADORA_IMPL)
 clean:
 	rm -f $(OBJECT_DIR)/*.o
 	rm -f $(TMP_DIR)/*.pid
-	rm -f servidor
-	rm -f cliente
-	rm -f multi_cliente
+	rm -f $(SERVER_EXE)
+	rm -f $(CLIENTE_EXE)
+	rm -f $(MULTI_CLIENTE_EXE)
+	rm -f $(CALCULADORA_EXE)
+	rm -d -r $(RESOURCES_DIR)
