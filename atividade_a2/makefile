@@ -38,7 +38,7 @@ testar: $(CLIENTE_EXE) $(SERVER_EXE) $(MULTI_CLIENTE_EXE)
 	@# Inicializar cliente 1, 2, 3
 	@./$(MULTI_CLIENTE_EXE) 1+2*3+4 2+3-9/2 4+5-5+4*1
 	@# Matar servidor 1
-	@echo "finalizando server 1"
+	@echo "finalizando servidor"
 	@cat $(SERVER_PID_FILE) | xargs kill
 
 $(MULTI_CLIENTE_EXE) : $(CLIENTE_EXE) $(MULTI_CLIENTE_OBJECT)
