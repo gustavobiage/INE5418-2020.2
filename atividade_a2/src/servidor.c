@@ -39,8 +39,12 @@ void* resolve_request(void* arg) {
 		write(client_sockfd, buffer, buffer_length);
 	}
 	close(client_sockfd);
+	pthread_t* self_pointer = parameters->self_pointer;
+	struct c_queue* thread_queue = parameters->thread_queue;
+	push(thread_queue, self_pointer);
 	free(parameters);
 	// printf("THREAD END\n");
+	pthread_exit(0);
 }
 
 int main(int argc, char**arcv) {
@@ -85,7 +89,8 @@ int main(int argc, char**arcv) {
 
 		thread = pop(&thread_queue);
 		parameters->client_sockfd = accept(server_sockfd, (struct sockaddr *) &client_sockaddr, &client_len);
-		parameters->self_address = thread;
+		parameters->self_pointer = thread;
+		parameters->thread_queue = &thread_queue;
 		parameters->buffer_length = BUFFER_LENGTH;
 		if (i++ >= BACKLOG) {
 			pthread_join(*thread, NULL);

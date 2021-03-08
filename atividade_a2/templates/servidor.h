@@ -11,7 +11,8 @@
 #include "concurrent_queue.h"
 
 struct thread_par {
-	pthread_t* self_address;
+	pthread_t* self_pointer;
+	struct c_queue* thread_queue;
 	int client_sockfd;
 	int buffer_length;
 };
