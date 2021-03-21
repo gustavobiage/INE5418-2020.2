@@ -68,7 +68,8 @@ public class StressTest {
         } catch (Exception e) {
             System.out.println("StressTest exception: " + e);
         }
-        System.out.println("Teste completo: Você já pode encerrar este processo.");
+        threadPoolExecutor.shutdown();
+        System.out.println("Teste completo.");
     }
 
     private static class CallServer implements Callable<Boolean> {

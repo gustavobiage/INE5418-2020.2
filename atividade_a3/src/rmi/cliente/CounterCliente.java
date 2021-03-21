@@ -14,5 +14,6 @@ public class CounterCliente {
         } catch (Exception e) {
             System.out.println("GlobalCounter exception: " + e);
         }
+        System.out.println("Cliente completo: Você já pode encerrar este processo.");
     }
 }
