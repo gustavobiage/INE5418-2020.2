@@ -27,4 +27,4 @@ build: $(SERVIDOR_IMPL) $(GLOBAL_COUNTER_IMPL) $(REMOTE_COUNTER_INTERFACE) $(CLI
 	@echo "Construído com sucesso!"
 
 clean:
-	rm -f -d -r $(CLASS_DIR)/*
+	rm -f -d -r $(CLASS_DIR)
